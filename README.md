@@ -8,7 +8,7 @@ Using the Belly Button Biodiversity dataset, an interactive dashboard was create
 * StarterCode - provided starting material.
     * index - provided html code.
     * samples - provided json file which contains all data.
-    * static/js - provided folder containing javascript app
+    * static/js - provided folder containing javascript app.
         * app - javascript file which imports the data from the json file and creates all the dashboards linked to the html file.
 
 # References and Resources
