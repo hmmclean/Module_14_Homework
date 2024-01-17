@@ -13,4 +13,7 @@ Using the Belly Button Biodiversity dataset, an interactive dashboard was create
 
 # References and Resources
 * ChatGPT - https://chat.openai.com/
-* Plotly documentation for gauge chart - https://plotly.com/javascript/reference/indicator/ & https://plotly.com/javascript/gauge-charts/
+* Plotly documentation for gauge chart -
+     * https://plotly.com/javascript/reference/indicator/
+     * https://plotly.com/javascript/gauge-charts/
+* Merlot theme - https://github.com/pages-themes/merlot/blob/master/README.md
