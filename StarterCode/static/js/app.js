@@ -3,16 +3,16 @@ const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/
 
 // Fetch data using D3 library. 
 d3.json(url).then(function(samplesData) {
+  const dropdown = d3.select("#selDataset");
   // Populate the dropdown with test subject ids.
-  d3.select("#selDataset")
-    .selectAll("option")
+    dropdown.selectAll("option")
     .data(samplesData.names)
     .enter()
     .append("option")
     .text(d=>d)
     .attr("value",d=>d);
 
-  optionChanged(d3.select("#selDataset").property("value"));
+  optionChanged(dropdown.property("value"));
 });
 
 // Create optionChanged master function which will help update each chart when a new value is selected.
@@ -36,6 +36,8 @@ function optionChanged(value) {
       subject[0].otu_labels);
     // Metadata Chart
     CreateMetaData(metadata[0]);
+    // Gauge Chart
+    CreateGauge(metadata[0].wfreq);
 })};
 
 // Create a horizontal bar chart to display top 10 OTUs found in that individual.
@@ -45,7 +47,8 @@ function CreateBar(x,y,text) {
     y: y,
     text: text,
     type: 'bar',
-    orientation: 'h'
+    orientation: 'h',
+    marker: {color: "#784B84"}
   }];
   
   // Create a layout for the chart
@@ -101,4 +104,32 @@ function CreateMetaData(x) {
 
 
 // BONUS
-// Gauge Chart
+// Create the gauge chart
+function CreateGauge(num) {
+  var data = [
+  {
+      domain: { x: [0, 1], y: [0, 1] },
+      value: num,
+      title: "Belly Button Washing Frequency (Weekly)",
+      type: "indicator",
+      mode: "gauge+number",
+      gauge: {
+          axis: { range: [null, 10]},
+          bar: { color: "#B24C63" },
+          steps: [
+              { range: [0, 1], color: "#E0FFE0" },
+              { range: [1, 2], color: "#B4E6B4" },
+              { range: [2, 3], color: "#8ED98E" },
+              { range: [3, 4], color: "#6BCF6B" },
+              { range: [4, 5], color: "#4DBF4D" },
+              { range: [5, 6], color: "#38AB38" },
+              { range: [6, 7], color: "#2A8F2A" },
+              { range: [7, 8], color: "#1E751E" },
+              { range: [8, 9], color: "#136113" },
+              { range: [9, 10], color: "#0A440A" },
+          ],
+      },
+  }];
+  // Create the chart
+  Plotly.newPlot('gauge', data);
+}
